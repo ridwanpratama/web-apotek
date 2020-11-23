@@ -9,7 +9,7 @@
         <div class="col-12 col-md-12 col-lg-12">
            <div class="card">
                <div class="card-body">
-                 <form action="#" method="POST">
+                 <form action="{{ route('simpan_user') }}" method="POST">
                    @csrf
                   <div class="row">
 
