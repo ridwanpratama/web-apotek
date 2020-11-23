@@ -49,13 +49,6 @@
             <li class="nav-item dropdown">
               <a href="#" class="nav-link">
                 <i class="far fa-file-alt"></i>
-                <span>Transaksi</span>
-              </a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link">
-                <i class="far fa-file-alt"></i>
                 <span>Laporan</span>
               </a>
             </li>
