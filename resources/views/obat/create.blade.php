@@ -9,18 +9,18 @@
         <div class="col-12 col-md-12 col-lg-12">
            <div class="card">
                <div class="card-body">
-                 <form action="#" method="POST">
+                 <form action="{{route('simpan_obat')}}" method="POST">
                    @csrf
                   <div class="row">
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label @error('kd_obat') class="text-danger" 
-                        @enderror>ID Obat @error('kd_obat')
+                        <label @error('kode_obat') class="text-danger" 
+                        @enderror>ID Obat @error('kode_obat')
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="kd_obat" type="text" name="kd_obat" value="{{ old('kd_obat') }}" class="form-control">
+                        <input id="kode_obat" type="text" name="kode_obat" value="{{ old('kode_obat') }}" class="form-control">
                       </div>
                     </div>
 
@@ -31,7 +31,7 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="password" type="text" name="nama_obat" value="{{ old('nama_obat') }}" class="form-control">
+                        <input id="nama_obat" type="text" name="nama_obat" value="{{ old('nama_obat') }}" class="form-control">
                       </div>
                     </div>
 
@@ -59,12 +59,12 @@
 
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label @error('stok') class="text-danger" 
-                          @enderror>Stok @error('stok')
+                          <label @error('stok_obat') class="text-danger" 
+                          @enderror>Stok  @error('stok_obat')
                                {{ $message }}
                             @enderror
                           </label>
-                          <input id="stok" type="number" name="stok" value="{{ old('stok') }}" class="form-control">
+                          <input id="stok_obat" type="number" name="stok_obat" value="{{ old('stok_obat') }}" class="form-control">
                         </div>
                       </div>
 

@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// SPEEDRUN BIKIN VIEW WKWKWKWKWK
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,17 +29,12 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
-    Route::get('obat', function () {
-        return view('obat.index');
-    })->name('obat');
-    
-    Route::get('create_obat', function () {
-        return view('obat.create');
-    })->name('create_obat');
-
-    Route::get('edit_obat', function () {
-        return view('obat.edit');
-    })->name('edit_obat');
+    Route::get('obat', 'ObatController@index')->name('obat');
+    Route::get('create_obat', 'ObatController@create')->name('create_obat');
+    Route::post('simpan_obat', 'ObatController@store')->name('simpan_obat');
+    Route::get('edit_obat/{id}', 'ObatController@edit')->name('edit_obat');
+    Route::post('update_obat/{id}', 'ObatController@update')->name('update_obat');
+    Route::get('delete_obat/{id}', 'ObatController@destroy')->name('destroy_obat');
     
     Route::get('pemasok', function () {
         return view('pemasok.index');

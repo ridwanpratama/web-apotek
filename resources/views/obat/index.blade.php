@@ -44,21 +44,21 @@
                 </tr>
                </thead>
                <tbody>
-            
+               @foreach ($data as $obat)
                 <tr> 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $obat->id }}</td>
+                    <td>{{ $obat->kode_obat }}</td>
+                    <td>{{ $obat->nama_obat }}</td>
+                    <td>{{ $obat->jenis_obat }}</td>
+                    <td>{{ $obat->harga_obat }}</td>
+                    <td>{{ $obat->stok_obat }}</td>
+                    <td>{{ $obat->pemasok_id}}</td>
                     <td>
-                        <a href="{{ route('edit_obat') }}" class="badge badge-success">Edit</a>
-                        <a href="" onclick="return confirm('Yakin hapus data?')" class="badge badge-danger">Delete</a>
+                        <a href="{{route('edit_obat',$obat->id)}}" class="badge badge-success">Edit</a>
+                        <a href="{{route('destroy_obat',$obat->id)}}" onclick="return confirm('Yakin hapus data?')" class="badge badge-danger">Delete</a>
                     </td>
                 </tr>
-
+                @endforeach
                </tbody>
            </table>
                </div>

@@ -9,18 +9,18 @@
         <div class="col-12 col-md-12 col-lg-12">
            <div class="card">
                <div class="card-body">
-                 <form action="#" method="POST">
+                 <form action="{{ route('update_obat', $data->id) }}" method="POST">
                    @csrf
                   <div class="row">
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label @error('kd_obat') class="text-danger" 
-                        @enderror>ID Obat @error('kd_obat')
+                        <label @error('kode_obat') class="text-danger" 
+                        @enderror>ID Obat @error('kode_obat')
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="kd_obat" type="text" name="kd_obat" class="form-control">
+                        <input id="kode_obat" type="text" name="kode_obat" value="{{ $data->kode_obat }}" class="form-control">
                       </div>
                     </div>
 
@@ -31,7 +31,7 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="password" type="text" name="nama_obat" class="form-control">
+                        <input id="nama_obat" type="text" name="nama_obat" value="{{ $data->nama_obat }}" class="form-control">
                       </div>
                     </div>
 
@@ -42,7 +42,7 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="jenis_obat" type="text" name="jenis_obat" class="form-control">
+                        <input id="jenis_obat" type="text" name="jenis_obat" value="{{ $data->jenis_obat }}" class="form-control">
                       </div>
                     </div>
 
@@ -53,18 +53,18 @@
                                {{ $message }}
                             @enderror
                           </label>
-                          <input id="harga_obat" type="text" name="harga_obat" class="form-control">
+                          <input id="harga_obat" type="text" name="harga_obat" value="{{ $data->harga_obat }}" class="form-control">
                         </div>
                       </div>
 
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label @error('stok') class="text-danger" 
-                          @enderror>Stok @error('stok')
+                          <label @error('stok_obat') class="text-danger" 
+                          @enderror>Stok @error('stok_obat')
                                {{ $message }}
                             @enderror
                           </label>
-                          <input id="stok" type="number" name="stok" class="form-control">
+                          <input id="stok_obat" type="number" name="stok_obat" value="{{ $data->stok_obat }}" class="form-control">
                         </div>
                       </div>
 
@@ -75,7 +75,7 @@
                                {{ $message }}
                             @enderror
                           </label>
-                          <input id="pemasok_id" type="text" name="pemasok_id" class="form-control">
+                          <input id="pemasok_id" type="text" name="pemasok_id" value="{{ $data->pemasok_id }}" class="form-control">
                         </div>
                       </div>
 
