@@ -9,7 +9,7 @@
         <div class="col-12 col-md-12 col-lg-12">
            <div class="card">
                <div class="card-body">
-                 <form action="" method="POST">
+                 <form action="{{ route('update_user', $user->id) }}" method="POST">
                    @csrf
                   <div class="row">
 
@@ -20,7 +20,7 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="text" type="text" name="name" class="form-control" value="">
+                        <input id="email" type="name" name="name" class="form-control" value="{{ $user->name }}">
                       </div>
                     </div>
 
@@ -31,10 +31,11 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <select class="form-control" name="level" id="level">                    
-                          <option value="admin">admin</option>
-                          <option value="manager">manager</option>
-                          <option value="kasir">kasir</option>
+                        <select class="form-control" name="level" id="level">  
+                          <option>{{ $user->level }}</option>                      
+                          <option value="admin" @if($user->level == 'admin') @endif>admin</option>
+                          <option value="manager" @if($user->level == 'manager') @endif>manager</option>
+                          <option value="kasir" @if($user->level == 'kasir') @endif>kasir</option>
                         </select>
                       </div>
                     </div>
@@ -46,7 +47,7 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="password" type="password" name="password" class="form-control" value="">
+                        <input id="password" type="password" name="password" class="form-control" value="{{ $user->password }}">
                       </div>
                     </div>
 
@@ -57,7 +58,7 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="email" type="email" name="email" class="form-control" value="">
+                        <input id="email" type="email" name="email" class="form-control" value="{{ $user->email }}">
                       </div>
                     </div>
 

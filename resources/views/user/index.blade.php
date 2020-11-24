@@ -37,24 +37,22 @@
                     <th>Nama</th>
                     <th>Level</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Action</th>
                 </tr>
                </thead>
                <tbody>
-            
+                @foreach ($data as $item)
                 <tr> 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->level }}</td>
+                    <td>{{ $item->email }}</td>
                     <td>
-                        <a href="{{ route('edit_user') }}" class="badge badge-success">Edit</a>
-                        <a href="" onclick="return confirm('Yakin hapus data?')" class="badge badge-danger">Delete</a>
+                        <a href="{{url('edit_user', $item->id)}}" class="badge badge-success">Edit</a>
+                        <a href="{{url('delete_user', $item->id)}}" onclick="return confirm('Yakin hapus data?')" class="badge badge-danger">Delete</a>
                     </td>
                 </tr>
-
+                @endforeach
                </tbody>
            </table>
                </div>
