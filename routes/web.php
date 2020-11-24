@@ -38,19 +38,15 @@ Route::get('create_user', function () {
 Route::get('edit_user', function () {
     return view('user.edit');
 })->name('edit_user');
+//Obat
+Route::get('obat', 'ObatController@index')->name('obat');
+Route::get('create_obat', 'ObatController@create')->name('create_obat');
+Route::post('simpan_obat', 'ObatController@store')->name('simpan_obat');
+Route::get('edit_obat/{id}', 'ObatController@edit')->name('edit_obat');
+Route::post('update_obat/{id}', 'ObatController@update')->name('update_obat');
+Route::get('delete_obat/{id}', 'ObatController@destroy')->name('destroy_obat');
 
-Route::get('edit_obat', function () {
-    return view('obat.edit');
-})->name('edit_obat');
-
-Route::get('obat', function () {
-    return view('obat.index');
-})->name('obat');
-
-Route::get('create_obat', function () {
-    return view('obat.create');
-})->name('create_obat');
-
+//Pemasok
 Route::get('pemasok', function () {
     return view('pemasok.index');
 })->name('pemasok');
