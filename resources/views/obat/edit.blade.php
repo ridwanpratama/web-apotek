@@ -75,7 +75,12 @@
                                {{ $message }}
                             @enderror
                           </label>
-                          <input id="pemasok_id" type="text" name="pemasok_id" value="{{ $data->pemasok_id }}" class="form-control">
+                          <select class="form-control" name="pemasok_id" id="pemasok_id">
+                            <option value="{{ $data->pemasok_id }}"> {{ $data->pemasok->nama_pemasok }} </option>
+                            @foreach ($pemasok as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama_pemasok }}</option>
+                            @endforeach
+                          </select>
                         </div>
                       </div>
 
