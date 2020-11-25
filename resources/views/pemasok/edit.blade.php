@@ -9,18 +9,18 @@
         <div class="col-12 col-md-12 col-lg-12">
            <div class="card">
                <div class="card-body">
-                 <form action="" method="POST">
+                 <form action="{{ route('update_pemasok', $data->id) }}" method="POST">
                    @csrf
                   <div class="row">
 
                     <div class="col-md-6">
                         <div class="form-group">
-                          <label @error('kd_pemasok') class="text-danger" 
-                          @enderror>Kode Pemasok @error('kd_pemasok')
+                          <label @error('kode_pemasok') class="text-danger" 
+                          @enderror>Kode Pemasok @error('kode_pemasok')
                                {{ $message }}
                             @enderror
                           </label>
-                          <input id="kd_pemasok" type="password" name="kd_pemasok" class="form-control" value="">
+                          <input id="kode_pemasok" type="password" name="kode_pemasok" class="form-control" value="{{ $data->kode_pemasok }}">
                         </div>
                       </div>
 
@@ -31,7 +31,7 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="nama_pemasok" type="text" name="nama_pemasok" class="form-control" value="">
+                        <input id="nama_pemasok" type="text" name="nama_pemasok" class="form-control" value="{{ $data->nama_pemasok }}">
                       </div>
                     </div>
 

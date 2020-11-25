@@ -41,16 +41,17 @@
                </thead>
                <tbody>
             
+               @foreach ($data as $pemasok)
                 <tr> 
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $pemasok->id }}</td>
+                    <td>{{ $pemasok->kode_pemasok }}</td>
+                    <td>{{ $pemasok->nama_pemasok }}</td>
                     <td>
-                        <a href="{{ route('edit_pemasok') }}" class="badge badge-success">Edit</a>
-                        <a href="" onclick="return confirm('Yakin hapus data?')" class="badge badge-danger">Delete</a>
+                        <a href="{{route('edit_pemasok',$pemasok->id)}}" class="badge badge-success">Edit</a>
+                        <a href="{{route('destroy_pemasok',$pemasok->id)}}" onclick="return confirm('Yakin hapus data?')" class="badge badge-danger">Delete</a>
                     </td>
                 </tr>
-
+                @endforeach
                </tbody>
            </table>
                </div>
