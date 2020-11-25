@@ -50,7 +50,12 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'ceklevel:kasir']], function () {
-    
+    Route::get('transaksi', 'TransaksiController@index')->name('transaksi');
+    Route::get('create_transaksi', 'TransaksiController@create')->name('create_transaksi');
+    Route::post('simpan_transaksi', 'TransaksiController@store')->name('simpan_transaksi');
+    Route::get('edit_transaksi/{id}', 'TransaksiController@edit')->name('edit_transaksi');
+    Route::post('update_transaksi/{id}', 'TransaksiController@update')->name('update_transaksi');
+    Route::get('delete_transaksi/{id}', 'TransaksiController@destroy')->name('destroy_transaksi');
 });
 
 Route::group(['middleware' => ['auth', 'ceklevel:manager']], function () {

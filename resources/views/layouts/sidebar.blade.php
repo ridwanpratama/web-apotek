@@ -46,7 +46,7 @@
           
           @if (auth()->user()->level=="kasir")
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link">
+            <a href="{{ route('transaksi') }}" class="nav-link">
               <i class="fas fa-pencil-ruler"></i> 
               <span>Transaksi</span>
             </a>
