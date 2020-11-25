@@ -14,7 +14,8 @@ class PemasokController extends Controller
      */
     public function index()
     {
-        //
+        $data= Pemasok::latest()->get();
+        return view ('pemasok.index')->withData($data);
     }
 
     /**
@@ -24,7 +25,8 @@ class PemasokController extends Controller
      */
     public function create()
     {
-        //
+        $data = Pemasok::all();
+        return view('pemasok.create', compact('data'));
     }
 
     /**
@@ -35,7 +37,17 @@ class PemasokController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'kode_pemasok'=>'required',
+            'nama_pemasok'=>'required',
+            ]);
+            Pemasok::create([
+                'kode_pemasok' => $request->kode_pemasok,
+                'nama_pemasok' => $request->nama_pemasok,
+
+            ]);
+    
+            return redirect('pemasok')->with('message', 'Data berhasil disimpan');
     }
 
     /**
@@ -55,9 +67,10 @@ class PemasokController extends Controller
      * @param  \App\Pemasok  $pemasok
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pemasok $pemasok)
+    public function edit($id)
     {
-        //
+        $data = Pemasok::findOrFail($id);
+        return view('pemasok.edit', compact('data'));
     }
 
     /**
@@ -67,9 +80,16 @@ class PemasokController extends Controller
      * @param  \App\Pemasok  $pemasok
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pemasok $pemasok)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'kode_pemasok'=>'required',
+            'nama_pemasok'=>'required',
+            ]);
+        $data = Pemasok::findorfail($id);
+        $data->update($request->all());
+        
+        return redirect('pemasok')->with('message', 'Data berhasil diupdate');
     }
 
     /**
@@ -78,8 +98,10 @@ class PemasokController extends Controller
      * @param  \App\Pemasok  $pemasok
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pemasok $pemasok)
+    public function destroy($id)
     {
-        //
+        $data = Pemasok::findorfail($id);
+        $data->delete();
+        return back()->with('delete', 'Data berhasil dihapus');
     }
 }
