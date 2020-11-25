@@ -14,7 +14,8 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $data= Transaksi::latest()->get();
+        return view ('transaksi.index')->withData($data);
     }
 
     /**
@@ -24,7 +25,8 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        $data = Transaksi::all();
+        return view('transaksi.create', compact('data'));
     }
 
     /**
@@ -35,7 +37,25 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'kode_transaksi'=>'required',
+            'obat_id'=>'required',
+            'nama_kasir'=>'required',
+            'jumlah_beli'=>'required',
+            'total_harga'=>'required',
+            'tanggal_beli'=>'required',
+            ]);
+            Transaksi::create([
+                'kode_transaksi' => $request->kode_transaksi,
+                'obat_id' => $request->obat_id,
+                'nama_kasir' => $request->nama_kasir,
+                'jumlah_beli' => $request->jumlah_beli,
+                'total_harga' => $request->total_harga,
+                'tanggal_beli' => $request->tanggal_beli,
+                
+            ]);
+    
+            return redirect('transaksi')->with('message', 'Data berhasil disimpan');
     }
 
     /**
@@ -55,9 +75,10 @@ class TransaksiController extends Controller
      * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaksi $transaksi)
+    public function edit($id)
     {
-        //
+        $data = Transaksi::findOrFail($id);
+        return view('transaksi.edit', compact('data'));
     }
 
     /**
@@ -67,9 +88,21 @@ class TransaksiController extends Controller
      * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaksi $transaksi)
+    public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+        $this->validate($request, [
+            'kode_transaksi'=>'required',
+            'obat_id'=>'required',
+            'nama_kasir'=>'required',
+            'jumlah_beli'=>'required',
+            'total_harga'=>'required',
+            'tanggal_beli'=>'required',
+            ]);
+        $data = Transaksi::findorfail($id);
+        $data->update($request->all());
+        
+        return redirect('transaksi')->with('message', 'Data berhasil diupdate');
     }
 
     /**
@@ -78,8 +111,10 @@ class TransaksiController extends Controller
      * @param  \App\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaksi $transaksi)
+    public function destroy($id)
     {
-        //
+        $data = Transaksi::findorfail($id);
+        $data->delete();
+        return back()->with('delete', 'Data berhasil dihapus');
     }
 }
