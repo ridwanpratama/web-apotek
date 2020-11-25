@@ -52,7 +52,7 @@
                     <td>{{ $obat->jenis_obat }}</td>
                     <td>{{ $obat->harga_obat }}</td>
                     <td>{{ $obat->stok_obat }}</td>
-                    <td>{{ $obat->pemasok_id}}</td>
+                    <td>{{ $obat->pemasok->nama_pemasok }}</td>
                     <td>
                         <a href="{{route('edit_obat',$obat->id)}}" class="badge badge-success">Edit</a>
                         <a href="{{route('destroy_obat',$obat->id)}}" onclick="return confirm('Yakin hapus data?')" class="badge badge-danger">Delete</a>
