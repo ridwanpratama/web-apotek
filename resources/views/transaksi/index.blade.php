@@ -35,7 +35,7 @@
                 <tr>
                 <th>No</th>
                 <th>Kode Transaksi</th>
-                <th>ID Obat</th>
+                <th>Nama Obat</th>
                 <th>Nama Kasir</th>
                 <th>Jumlah Beli</th>
                 <th>Total Harga</th>
@@ -48,7 +48,7 @@
                 <tr> 
                     <td>{{ $transaksi->id }}</td>
                     <td>{{ $transaksi->kode_transaksi }}</td>
-                    <td>{{ $transaksi->obat_id }}</td>
+                    <td>{{ $transaksi->obat->nama_obat }}</td>
                     <td>{{ $transaksi->nama_kasir }}</td>
                     <td>{{ $transaksi->jumlah_beli }}</td>
                     <td>{{ $transaksi->total_harga}}</td>
