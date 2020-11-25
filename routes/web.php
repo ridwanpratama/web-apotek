@@ -36,17 +36,12 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     Route::post('update_obat/{id}', 'ObatController@update')->name('update_obat');
     Route::get('delete_obat/{id}', 'ObatController@destroy')->name('destroy_obat');
     
-    Route::get('pemasok', function () {
-        return view('pemasok.index');
-    })->name('pemasok');
-    
-    Route::get('create_pemasok', function () {
-        return view('pemasok.create');
-    })->name('create_pemasok');
-    
-    Route::get('edit_pemasok', function () {
-        return view('pemasok.edit');
-    })->name('edit_pemasok');
+    Route::get('pemasok', 'PemasokController@index')->name('pemasok');
+    Route::get('create_pemasok', 'PemasokController@create')->name('create_pemasok');
+    Route::post('simpan_pemasok', 'PemasokController@store')->name('simpan_pemasok');
+    Route::get('edit_pemasok/{id}', 'PemasokController@edit')->name('edit_pemasok');
+    Route::post('update_pemasok/{id}', 'PemasokController@update')->name('update_pemasok');
+    Route::get('delete_pemasok/{id}', 'PemasokController@destroy')->name('destroy_pemasok');
 });
 
 Route::group(['middleware' => ['auth', 'ceklevel:kasir']], function () {
