@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transaksi;
+use App\Obat;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -14,7 +15,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $data= Transaksi::latest()->get();
+        $data = Transaksi::with('obat')->latest()->get();
         return view ('transaksi.index')->withData($data);
     }
 
@@ -26,7 +27,8 @@ class TransaksiController extends Controller
     public function create()
     {
         $data = Transaksi::all();
-        return view('transaksi.create', compact('data'));
+        $obat = Obat::all();
+        return view('transaksi.create', compact('data', 'obat'));
     }
 
     /**
@@ -59,17 +61,6 @@ class TransaksiController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaksi $transaksi)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Transaksi  $transaksi
@@ -77,8 +68,9 @@ class TransaksiController extends Controller
      */
     public function edit($id)
     {
-        $data = Transaksi::findOrFail($id);
-        return view('transaksi.edit', compact('data'));
+        $obat = Obat::all();
+        $data = Transaksi::with('obat')->findOrFail($id);
+        return view('transaksi.edit', compact('data', 'obat'));
     }
 
     /**
