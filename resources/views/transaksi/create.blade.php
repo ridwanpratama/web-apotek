@@ -31,7 +31,12 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="obat_id" type="number" name="obat_id" value="{{ old('obat_id') }}" class="form-control">
+                        <select class="form-control" name="obat_id" id="obat_id">
+                            <option value disable>Pilih Obat</option>
+                            @foreach ($obat as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama_obat }}</option>
+                            @endforeach
+                          </select>
                       </div>
                     </div>
 
@@ -42,7 +47,7 @@
                              {{ $message }}
                           @enderror
                         </label>
-                        <input id="nama_kasir" type="text" name="nama_kasir" value="{{ old('nama_kasir') }}" class="form-control">
+                        <input id="nama_kasir" type="text" name="nama_kasir" value="{{auth()->user()->name}}" class="form-control" readonly>
                       </div>
                     </div>
 
