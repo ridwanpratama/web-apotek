@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Obat;   
+use App\Obat;
+use App\Pemasok;   
 use Illuminate\Http\Request;
 
 class ObatController extends Controller
@@ -14,8 +15,8 @@ class ObatController extends Controller
      */
     public function index()
     {
-       $data= Obat::latest()->get();
-       return view ('obat.index')->withData($data);
+        $data = Obat::with('pemasok')->latest()->get();
+        return view ('obat.index')->withData($data);
     }
 
     /**
@@ -26,7 +27,8 @@ class ObatController extends Controller
     public function create()
     {
         $data = Obat::all();
-        return view('obat.create', compact('data'));
+        $pemasok = Pemasok::all();
+        return view('obat.create', compact('data', 'pemasok'));
     }
 
     /**
@@ -59,19 +61,6 @@ class ObatController extends Controller
         return redirect('obat')->with('message', 'Data berhasil disimpan');
     }
 
-    
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Obat  $obat
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Obat $obat)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -80,8 +69,9 @@ class ObatController extends Controller
      */
     public function edit($id)
     {
-        $data = Obat::findOrFail($id);
-        return view('obat.edit', compact('data'));
+        $pemasok = Pemasok::all();
+        $data = Obat::with('pemasok')->findOrFail($id);
+        return view('obat.edit', compact('data', 'pemasok'));
     }
 
     /**
