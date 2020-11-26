@@ -16,7 +16,7 @@
                 <h4>Jumlah User</h4>
               </div>
               <div class="card-body">
-
+                {{ $jumlah_user }}
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
                 <h4>Jumlah Obat</h4>
               </div>
               <div class="card-body">
-
+                {{ $jumlah_obat }}
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
                 <h4>Jumlah Pemasok</h4>
               </div>
               <div class="card-body">
-   
+                {{ $jumlah_pemasok }}
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
                 <h4>Jumlah Transaksi</h4>
               </div>
               <div class="card-body">
-
+                {{ $jumlah_transaksi }}
               </div>
             </div>
           </div>
