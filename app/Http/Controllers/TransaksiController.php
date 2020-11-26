@@ -26,8 +26,8 @@ class TransaksiController extends Controller
      */
     public function create()
     {
+        $obat = Obat::where('stok_obat', '>', 0)->get();
         $data = Transaksi::all();
-        $obat = Obat::all();
         return view('transaksi.create', compact('data', 'obat'));
     }
 
@@ -47,6 +47,15 @@ class TransaksiController extends Controller
             'total_harga'=>'required',
             'tanggal_beli'=>'required',
             ]);
+        //Transaksi
+        $obat = Obat::find($request->obat_id);
+        $total_harga = $request->jumlah_beli * $obat->harga_obat;
+        $sisa_stok = $obat->stok_barang - $request->jumlah_beli;
+        $obat->update([
+            'stok_barang' => $sisa_stok
+        ]);
+        //End Transaksi
+
             Transaksi::create([
                 'kode_transaksi' => $request->kode_transaksi,
                 'obat_id' => $request->obat_id,

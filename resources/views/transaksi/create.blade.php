@@ -34,7 +34,7 @@
                         <select class="form-control" name="obat_id" id="obat_id">
                             <option value disable>Pilih Obat</option>
                             @foreach ($obat as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama_obat }}</option>
+                            <option value="{{ $item->id }}" data-stok="{{ $item->stok_obat }}" data-harga="{{$item->harga_obat}}">{{ $item->nama_obat }}</option>
                             @endforeach
                           </select>
                       </div>
@@ -69,7 +69,7 @@
                                {{ $message }}
                             @enderror
                           </label>
-                          <input id="total_harga" type="number" name="total_harga" value="{{ old('total_harga') }}" class="form-control">
+                          <input id="total_harga" type="number" name="total_harga" value="{{ old('total_harga') }}" class="form-control"readonly>
                         </div>
                       </div>
 
@@ -97,5 +97,31 @@
 @endsection
 
 @push('page-scripts')
-    
+<script>
+$(document).ready(function(){
+    $('select').change(function(){
+      let harga = $(this).find(':selected').data('harga');
+      let stok = $(this).find(':selected').data('stok');
+      $('#jumlah_beli').keyup(function(){
+          let jumlah_beli = $('#jumlah_beli').val()
+          if(jumlah_beli > stok){
+            $('#jumlah_beli').val();
+            alert('Stok Tidak Mencukupi');
+          }else{
+            let total = parseInt(harga) * parseInt(jumlah_beli)
+            if (harga == "kosong") {
+                total = ""
+            }
+            if (jumlah_beli == "") {
+                total = ""
+            }
+            console.log(total);
+            if(!isNaN(total)){
+                $('#total_harga').val(total)
+            }
+          }
+      })
+  })
+});
+</script>
 @endpush
