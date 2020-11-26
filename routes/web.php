@@ -60,4 +60,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:manager']], function () {
     Route::get('edit_user/{id}', 'UserController@edit')->name('edit_user');
     Route::post('update_user/{id}', 'UserController@update')->name('update_user');
     Route::get('delete_user/{id}', 'UserController@destroy')->name('delete_user');
+
+    Route::get('laporan', 'LaporanController@index')->name('laporan');
+    Route::get('/laporan/cari', 'LaporanController@search');
+    Route::get('/laporan/print', 'LaporanController@print')->name('print_laporan');
 });
